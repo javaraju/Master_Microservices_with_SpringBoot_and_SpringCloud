@@ -1,6 +1,5 @@
 package com.rajukrsoni.rest.webservices.restfull_we_bservices.Exception;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ErrorDetails {
