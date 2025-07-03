@@ -8,6 +8,7 @@ import java.lang.annotation.Retention;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 @Component
@@ -37,5 +38,10 @@ public class UserDaoService {
     public UserRequest findOne(int id) {
         Predicate<? super UserRequest> predicate = users -> users.getId().equals(id);
         return users.stream().filter(predicate).findFirst().orElse(null);
+    }
+
+    public void deleteUsers(int id) {
+        Predicate<? super UserRequest> predicate = users -> users.getId().equals(id);
+        users.removeIf(predicate);
     }
 }

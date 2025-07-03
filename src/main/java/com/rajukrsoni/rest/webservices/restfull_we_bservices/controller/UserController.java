@@ -33,6 +33,11 @@ public class UserController {
         return userRequestData;
     }
 
+    @DeleteMapping("/users/{id}")
+    public void deleteUsers(@PathVariable int id){
+        userDaoService.deleteUsers(id);
+    }
+
     @PostMapping("/users")
     public ResponseEntity<UserRequest> createUsers(@RequestBody UserRequest request){
         UserRequest savedUser = userDaoService.save(request);
