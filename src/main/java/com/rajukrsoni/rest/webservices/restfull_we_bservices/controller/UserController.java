@@ -3,6 +3,7 @@ package com.rajukrsoni.rest.webservices.restfull_we_bservices.controller;
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.Dao.UserDaoService;
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.request.UserRequest;
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.Exception.UserNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -39,7 +40,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<UserRequest> createUsers(@RequestBody UserRequest request){
+    public ResponseEntity<UserRequest> createUsers(@Valid @RequestBody UserRequest request){
         UserRequest savedUser = userDaoService.save(request);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
