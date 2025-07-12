@@ -1,9 +1,9 @@
 package com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.response;
 
-public class HelloWorldResponseBean {
+public class HelloWorldResponse {
     private String message;
 
-    public HelloWorldResponseBean(String message) {
+    public HelloWorldResponse(String message) {
         this.message = message;
     }
 

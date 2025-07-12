@@ -1,6 +1,6 @@
 package com.rajukrsoni.rest.webservices.restfull_we_bservices.controller;
 
-import com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.response.HelloWorldResponseBean;
+import com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.response.HelloWorldResponse;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +24,13 @@ public class HelloWorldController {
     }
 
     @GetMapping(path = "/hello-world-bean")
-    public HelloWorldResponseBean helloWorldBean(){
-        return new HelloWorldResponseBean("Hello World");
+    public HelloWorldResponse helloWorldBean(){
+        return new HelloWorldResponse("Hello World");
     }
 
     @GetMapping(path = "/hello-world/path-variable/{name}")
-    public HelloWorldResponseBean helloWorldPathVariable(@PathVariable String name){
-        return new HelloWorldResponseBean(String.format("Hello World, %s" , name));
+    public HelloWorldResponse helloWorldPathVariable(@PathVariable String name){
+        return new HelloWorldResponse(String.format("Hello World, %s" , name));
     }
 
     @GetMapping(path = "/hello-world-internationalized")
