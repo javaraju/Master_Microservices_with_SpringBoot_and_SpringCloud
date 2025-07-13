@@ -47,6 +47,8 @@
 
 		<!-- HAL (JSON Hypertext Application Language) is a lightweight format that
 		provides a standard way to represent links in JSON.
+		Spring Boot HAL Explorer is a web UI tool that lets you browse and
+		test hypermedia-driven REST APIs built with Spring HATEOAS.
 		Reduces the need for external tools like Postman for quick API testing.
 		link to check http://localhost:8080-->
 		<dependency>
