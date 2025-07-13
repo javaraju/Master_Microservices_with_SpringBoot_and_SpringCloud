@@ -39,43 +39,57 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!--		enabling health monitoring tool-->
+		<!--enabling health monitoring tool-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<!-- HAL (JSON Hypertext Application Language) is a lightweight format that
+		provides a standard way to represent links in JSON.
+		Reduces the need for external tools like Postman for quick API testing.
+		link to check http://localhost:8080-->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-explorer</artifactId>
+		</dependency>
 
-		<!--		use to get API link in response-->
+
+		<!--use to get API link in response-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 
-<!--For request validation like @valid @Past -->
+		<!--For request validation like @valid @Past -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
-<!--For swagger-ui use-->
-<!--		<dependency>-->
-<!--			<groupId>org.springdoc</groupId>-->
-<!--			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
-<!--			<version>2.7.0</version>-->
-<!--		</dependency>-->
-<!--For xml response -->
-<!--		<dependency>-->
-<!--			<groupId>com.fasterxml.jackson.dataformat</groupId>-->
-<!--			<artifactId>jackson-dataformat-xml</artifactId>-->
-<!--		</dependency>-->
 
+		<!--For swagger-ui use-->
 
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-devtools</artifactId>-->
-<!--			<scope>runtime</scope>-->
-<!--			<optional>true</optional>-->
-<!--		</dependency>-->
+	<!--<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.7.0</version>
+		</dependency>-->
+
+		<!--For xml response -->
+
+	<!--<dependency>
+		<groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>-->
+
+		<!--DevTools watches your classpath for changes and automatically
+		restarts the application when changes are detected-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
