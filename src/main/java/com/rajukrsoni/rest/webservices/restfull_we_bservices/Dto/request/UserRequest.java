@@ -1,14 +1,13 @@
 package com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity(name = "user_details")
 public class UserRequest {
@@ -25,6 +24,10 @@ public class UserRequest {
     @Past(message = "Birth Date should be in the past")
     @Column(name = "birth_date")
     private LocalDate birthdate;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Post> post;
 
     public UserRequest(Integer id, String name, LocalDate birthdate) {
         super();
