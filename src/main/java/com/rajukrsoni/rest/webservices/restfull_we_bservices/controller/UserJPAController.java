@@ -1,5 +1,6 @@
 package com.rajukrsoni.rest.webservices.restfull_we_bservices.controller;
 
+import com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.request.Post;
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.request.UserRequest;
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.Exception.UserNotFoundException;
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.JPARepository.UserRepository;
@@ -48,6 +49,16 @@ public class UserJPAController {
     public void deleteUsers(@PathVariable int id){
         userRepository.deleteById(id);
     }
+
+    @GetMapping("/jpa/users/{id}/posts")
+    public List<Post> retrievePosts(@PathVariable int id){
+        Optional<UserRequest> userRequestData = userRepository.findById(id);
+        if (userRequestData.isEmpty()){
+            throw new UserNotFoundException("id: " + id);
+        }
+        return userRequestData.get().getPost();
+    }
+
 
     @PostMapping("/jpa/users")
     public ResponseEntity<UserRequest> createUsers(@Valid @RequestBody UserRequest request){
