@@ -1,10 +1,11 @@
 package com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonFilter;
 
-@JsonIgnoreProperties({"field1","field2"})
-public class FilteringResponse {
+//@JsonIgnoreProperties({"field1","field2"})
+
+@JsonFilter("DynamicFilter")
+public class DynamicFilteringResponse {
 
     private String field1;
 
@@ -12,7 +13,7 @@ public class FilteringResponse {
     private String field2;
     private String field3;
 
-    public FilteringResponse(String field1, String field2, String field3) {
+    public DynamicFilteringResponse(String field1, String field2, String field3) {
         super();
         this.field1 = field1;
         this.field2 = field2;
