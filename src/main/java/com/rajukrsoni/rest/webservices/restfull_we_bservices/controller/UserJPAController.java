@@ -2,7 +2,9 @@ package com.rajukrsoni.rest.webservices.restfull_we_bservices.controller;
 
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.request.Post;
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.request.UserRequest;
+import com.rajukrsoni.rest.webservices.restfull_we_bservices.Exception.PostNotFoundException;
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.Exception.UserNotFoundException;
+import com.rajukrsoni.rest.webservices.restfull_we_bservices.JPARepository.PostRepository;
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.JPARepository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
@@ -22,9 +24,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class UserJPAController {
 
     private UserRepository userRepository;
+    private PostRepository postRepository;
 
-    public UserJPAController(UserRepository userRepository){
+    public UserJPAController(UserRepository userRepository, PostRepository postRepository){
         this.userRepository = userRepository;
+        this.postRepository = postRepository;
     }
 
     @GetMapping("/jpa/users")
@@ -69,5 +73,35 @@ public class UserJPAController {
                 .buildAndExpand(savedUser.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @PostMapping("/jpa/users/{id}/posts")
+    public ResponseEntity<Object> createPostForUser(@PathVariable int id, @Valid @RequestBody Post post){
+        Optional<UserRequest> userRequestData = userRepository.findById(id);
+        if (userRequestData.isEmpty()){
+            throw new UserNotFoundException("id: " + id);
+        }
+        post.setUser(userRequestData.get());
+        Post savePost = postRepository.save(post);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savePost.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
+
+    @GetMapping("/jpa/users/{id}/posts/{postId}")
+    public Post retrievePosts(@PathVariable int id, @PathVariable int postId){
+        Optional<UserRequest> userRequestData = userRepository.findById(id);
+        if (userRequestData.isEmpty()){
+            throw new UserNotFoundException("User not found with id: " + id);
+        }
+        // Find post by user and postId
+        Optional<Post> post = postRepository.findByIdAndUserId(postId, id);
+        if (post.isEmpty()) {
+            throw new PostNotFoundException("Post not found with id: " + postId + " for user id: " + id);
+        }
+
+        return post.get();
     }
 }

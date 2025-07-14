@@ -2,6 +2,7 @@ package com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Post {
@@ -9,6 +10,8 @@ public class Post {
     @Id
     @GeneratedValue
     private Integer id;
+
+    @Size(min = 10)
     private String description;
 
     @JsonIgnore
@@ -29,6 +32,14 @@ public class Post {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public UserRequest getUser() {
+        return user;
+    }
+
+    public void setUser(UserRequest user) {
+        this.user = user;
     }
 
     @Override
