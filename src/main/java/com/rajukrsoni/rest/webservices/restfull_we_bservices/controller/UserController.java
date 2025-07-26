@@ -6,9 +6,11 @@ import com.rajukrsoni.rest.webservices.restfull_we_bservices.Dto.request.UserReq
 import com.rajukrsoni.rest.webservices.restfull_we_bservices.Exception.UserNotFoundException;
 import jakarta.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
